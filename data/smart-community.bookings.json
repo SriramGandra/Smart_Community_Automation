@@ -1,0 +1,133 @@
+[{
+  "_id": {
+    "$oid": "694cd78a63197cb1d5d10741"
+  },
+  "amenity": "Gym",
+  "date": "2025-12-25",
+  "timeSlot": "13:00-14:00",
+  "userId": "1766643525273",
+  "userName": "Resident User",
+  "userEmail": "sriram@gmail.com",
+  "status": "Confirmed",
+  "createdAt": {
+    "$date": "2025-12-25T06:19:54.077Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-25T06:19:54.077Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69567cc658cbf7dd0ee48b06"
+  },
+  "amenity": "Gym",
+  "date": "2026-01-01",
+  "timeSlot": "16:00-17:00",
+  "userId": "694d043672dbd7d9f7162f0a",
+  "userName": "Sriram",
+  "userEmail": "sriram@gmail.com",
+  "status": "Confirmed",
+  "createdAt": {
+    "$date": "2026-01-01T13:55:18.934Z"
+  },
+  "updatedAt": {
+    "$date": "2026-01-01T13:55:18.934Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6956833fe369be7fe9a225c1"
+  },
+  "amenity": "Party Hall",
+  "date": "2026-01-08",
+  "timeSlot": "Full Day",
+  "userId": "694d043672dbd7d9f7162f0a",
+  "userName": "Sriram",
+  "userEmail": "sriram@gmail.com",
+  "status": "Confirmed",
+  "createdAt": {
+    "$date": "2026-01-01T14:22:55.096Z"
+  },
+  "updatedAt": {
+    "$date": "2026-01-01T14:22:55.096Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69577e70c796f6b3a23d6fc7"
+  },
+  "amenity": "Gym",
+  "date": "2026-01-03",
+  "timeSlot": "16:00-17:00",
+  "userId": "694d043672dbd7d9f7162f0a",
+  "userName": "Sriram",
+  "userEmail": "sriram@gmail.com",
+  "status": "Confirmed",
+  "createdAt": {
+    "$date": "2026-01-02T08:14:40.944Z"
+  },
+  "updatedAt": {
+    "$date": "2026-01-02T08:14:40.944Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69a1c4079c1c9f82f26b0270"
+  },
+  "amenity": "Party Hall",
+  "date": "2026-02-28",
+  "timeSlot": "Full Day",
+  "userId": "694d043672dbd7d9f7162f0a",
+  "userName": "Sriram",
+  "userEmail": "sriram@gmail.com",
+  "status": "Confirmed",
+  "createdAt": {
+    "$date": "2026-02-27T16:19:19.396Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-27T16:19:19.396Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69aa8e464192128d346e13d9"
+  },
+  "amenity": "Gym",
+  "date": "2026-03-07",
+  "timeSlot": "06:00-07:00",
+  "userId": "694d043672dbd7d9f7162f0a",
+  "userName": "Sriram",
+  "userEmail": "sriram@gmail.com",
+  "status": "Confirmed",
+  "createdAt": {
+    "$date": "2026-03-06T08:20:22.021Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-06T08:20:22.021Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69aa8e604192128d346e13e1"
+  },
+  "amenity": "Party Hall",
+  "date": "2026-03-07",
+  "timeSlot": "Full Day",
+  "userId": "694d043672dbd7d9f7162f0a",
+  "userName": "Sriram",
+  "userEmail": "sriram@gmail.com",
+  "status": "Confirmed",
+  "createdAt": {
+    "$date": "2026-03-06T08:20:48.142Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-06T08:20:48.142Z"
+  },
+  "__v": 0
+}]

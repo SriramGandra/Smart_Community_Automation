@@ -1,0 +1,19 @@
+[{
+  "_id": {
+    "$oid": "694cd67463197cb1d5d10721"
+  },
+  "title": "Welcome to Smart Community Platform",
+  "category": "Event",
+  "content": "We are excited to launch our new community management platform.",
+  "author": "Admin",
+  "date": {
+    "$date": "2025-12-25T06:15:16.755Z"
+  },
+  "createdAt": {
+    "$date": "2025-12-25T06:15:16.762Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-25T06:15:16.762Z"
+  },
+  "__v": 0
+}]

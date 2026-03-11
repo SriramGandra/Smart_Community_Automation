@@ -1,0 +1,112 @@
+[{
+  "_id": {
+    "$oid": "694d043672dbd7d9f7162f0a"
+  },
+  "email": "sriram@gmail.com",
+  "password": "$2a$10$/PioIYjXozVrN73dY7RUROw69Z37ZXON46y3mUcsZaAS/gkdONl5e",
+  "role": "Resident",
+  "name": "Sriram",
+  "createdAt": {
+    "$date": "2025-12-25T09:30:30.336Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-25T09:30:30.336Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "694e511e1286ddb6d2090ea3"
+  },
+  "email": "admin@gmail.com",
+  "password": "$2a$10$VTZFHWCyPoYKyyzaRQ2PHO6hxcoXppqFnKcTe3pxa0EEbkT9QoH3.",
+  "role": "Admin",
+  "name": "Admin",
+  "createdAt": {
+    "$date": "2025-12-26T09:10:54.317Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-26T09:10:55.330Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "694e511e1286ddb6d2090ea6"
+  },
+  "email": "security@gmail.com",
+  "password": "$2a$10$p84w0aAI5mCeCwGOr4Nmp.plaoFeNzD1fh48dReUYdZIHNQil3ZYi",
+  "role": "Security",
+  "name": "Security",
+  "createdAt": {
+    "$date": "2025-12-26T09:10:54.533Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-26T09:10:55.346Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "694e511e1286ddb6d2090eaa"
+  },
+  "email": "shiva@gmail.com",
+  "password": "$2a$10$JTF/ezE3jRhNMdzomnpmZ.xoiCWIEw3zeB8vHsQb1FPOYNv518Glm",
+  "role": "Resident",
+  "name": "Shiva",
+  "createdAt": {
+    "$date": "2025-12-26T09:10:54.721Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-26T09:10:54.721Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "694e511e1286ddb6d2090ead"
+  },
+  "email": "shrihan@gmail.com",
+  "password": "$2a$10$4Lcq.qIyAJC6o5Ai.g6KT.0RwqMx/psGY7joZSbCB6JVijC5a7Ntq",
+  "role": "Resident",
+  "name": "Shrihan",
+  "createdAt": {
+    "$date": "2025-12-26T09:10:54.925Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-26T09:10:54.925Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "694e511f1286ddb6d2090eb0"
+  },
+  "email": "meghanath@gmail.com",
+  "password": "$2a$10$af4E69Iiji8hEIgE7mpgGOhrc6VeBvRoWRysE8Wp8AH.aD0ub1YH2",
+  "role": "Resident",
+  "name": "Meghanath",
+  "createdAt": {
+    "$date": "2025-12-26T09:10:55.106Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-26T09:10:55.106Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "694e511f1286ddb6d2090eb3"
+  },
+  "email": "manideep@gmail.com",
+  "password": "$2a$10$XjQi.oKBfXupnRzrHRasx.mlsg5SKWJBQ3j.dK5/mLFCixVQrub/G",
+  "role": "Resident",
+  "name": "Manideep",
+  "createdAt": {
+    "$date": "2025-12-26T09:10:55.236Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-26T09:10:55.236Z"
+  },
+  "__v": 0
+}]

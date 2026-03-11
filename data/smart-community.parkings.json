@@ -1,0 +1,104 @@
+[{
+  "_id": {
+    "$oid": "694cd75863197cb1d5d10736"
+  },
+  "userId": "1766643525273",
+  "assignedSlot": "A-101",
+  "guestBookings": [
+    {
+      "vehicleNumber": "abc123",
+      "date": "2025-12-26",
+      "time": "12:00",
+      "_id": {
+        "$oid": "694cd7bf63197cb1d5d10751"
+      },
+      "createdAt": {
+        "$date": "2025-12-25T06:20:47.046Z"
+      },
+      "updatedAt": {
+        "$date": "2025-12-25T06:20:47.046Z"
+      }
+    }
+  ],
+  "createdAt": {
+    "$date": "2025-12-25T06:19:04.460Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-25T06:20:47.047Z"
+  },
+  "__v": 1
+},
+{
+  "_id": {
+    "$oid": "694cd85863197cb1d5d10799"
+  },
+  "userId": "1766643783535",
+  "assignedSlot": "A-101",
+  "guestBookings": [],
+  "createdAt": {
+    "$date": "2025-12-25T06:23:20.967Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-25T06:23:20.967Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69567cd558cbf7dd0ee48b11"
+  },
+  "userId": "694d043672dbd7d9f7162f0a",
+  "assignedSlot": "A-101",
+  "guestBookings": [
+    {
+      "vehicleNumber": "ads123",
+      "date": "2026-01-02",
+      "time": "20:30",
+      "_id": {
+        "$oid": "69567ce958cbf7dd0ee48b15"
+      },
+      "createdAt": {
+        "$date": "2026-01-01T13:55:53.579Z"
+      },
+      "updatedAt": {
+        "$date": "2026-01-01T13:55:53.579Z"
+      }
+    },
+    {
+      "vehicleNumber": "abc 123",
+      "date": "2026-03-07",
+      "time": "14:52",
+      "_id": {
+        "$oid": "69aa8eb54192128d346e13fc"
+      },
+      "createdAt": {
+        "$date": "2026-03-06T08:22:13.320Z"
+      },
+      "updatedAt": {
+        "$date": "2026-03-06T08:22:13.320Z"
+      }
+    }
+  ],
+  "createdAt": {
+    "$date": "2026-01-01T13:55:33.311Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-06T08:22:13.321Z"
+  },
+  "__v": 2
+},
+{
+  "_id": {
+    "$oid": "69578107c796f6b3a23d7006"
+  },
+  "userId": "694e511f1286ddb6d2090eb0",
+  "assignedSlot": "A-101",
+  "guestBookings": [],
+  "createdAt": {
+    "$date": "2026-01-02T08:25:43.102Z"
+  },
+  "updatedAt": {
+    "$date": "2026-01-02T08:25:43.102Z"
+  },
+  "__v": 0
+}]

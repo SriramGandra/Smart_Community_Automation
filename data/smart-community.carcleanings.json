@@ -1,0 +1,38 @@
+[{
+  "_id": {
+    "$oid": "694cd7c963197cb1d5d10757"
+  },
+  "service": "Basic Wash",
+  "scheduledDate": "2025-12-26",
+  "monthlyPlan": false,
+  "price": 200,
+  "userId": "1766643525273",
+  "userName": "Resident User",
+  "status": "Scheduled",
+  "createdAt": {
+    "$date": "2025-12-25T06:20:57.495Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-25T06:20:57.495Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69567cfa58cbf7dd0ee48b1b"
+  },
+  "service": "Basic Wash",
+  "scheduledDate": "2026-01-02",
+  "monthlyPlan": false,
+  "price": 200,
+  "userId": "694d043672dbd7d9f7162f0a",
+  "userName": "Sriram",
+  "status": "Scheduled",
+  "createdAt": {
+    "$date": "2026-01-01T13:56:10.931Z"
+  },
+  "updatedAt": {
+    "$date": "2026-01-01T13:56:10.931Z"
+  },
+  "__v": 0
+}]

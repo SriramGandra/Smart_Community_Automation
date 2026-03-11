@@ -1,0 +1,57 @@
+[{
+  "_id": {
+    "$oid": "694cd7a963197cb1d5d1074b"
+  },
+  "category": "Cleaning",
+  "description": "Corridor not cleaned properly",
+  "image": null,
+  "userId": "1766643525273",
+  "userName": "Resident User",
+  "userEmail": "sriram@gmail.com",
+  "status": "Resolved",
+  "createdAt": {
+    "$date": "2025-12-25T06:20:25.590Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-26T10:07:15.655Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69568366e369be7fe9a225cc"
+  },
+  "category": "Maintenance",
+  "description": "parking is not clean",
+  "image": null,
+  "userId": "694d043672dbd7d9f7162f0a",
+  "userName": "Sriram",
+  "userEmail": "sriram@gmail.com",
+  "status": "Resolved",
+  "createdAt": {
+    "$date": "2026-01-01T14:23:34.893Z"
+  },
+  "updatedAt": {
+    "$date": "2026-01-02T08:23:23.142Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69aa8ea04192128d346e13f3"
+  },
+  "category": "Maintenance",
+  "description": "corridor is not cleaned",
+  "image": null,
+  "userId": "694d043672dbd7d9f7162f0a",
+  "userName": "Sriram",
+  "userEmail": "sriram@gmail.com",
+  "status": "Resolved",
+  "createdAt": {
+    "$date": "2026-03-06T08:21:52.101Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-06T08:23:09.816Z"
+  },
+  "__v": 0
+}]
