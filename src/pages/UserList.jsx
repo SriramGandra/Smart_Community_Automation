@@ -98,7 +98,7 @@ export default function UserList() {
                         onClick={() => handleDelete(user._id, user.name)}
                         className="btn btn-danger btn-sm"
                         style={{ padding: '0.4rem 0.8rem', fontSize: '0.85rem' }}
-                        disabled={user.role === 'Admin'}
+                        disabled={user.role === 'Admin' || user.role === 'Security'}
                       >
                         Delete
                       </button>

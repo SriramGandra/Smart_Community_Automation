@@ -255,12 +255,18 @@ app.delete('/api/users/:id', authenticateToken, async (req, res) => {
       return res.status(403).json({ error: 'Unauthorized' })
     }
 
-    const user = await User.findByIdAndDelete(req.params.id)
-    if (!user) {
+    const userToDelete = await User.findById(req.params.id)
+    if (!userToDelete) {
       return res.status(404).json({ error: 'User not found' })
     }
 
-    console.log(`✅ User ${user.email} deleted by admin`)
+    if (userToDelete.role === 'Admin' || userToDelete.role === 'Security') {
+      return res.status(403).json({ error: 'Cannot delete Admin or Security accounts' })
+    }
+
+    await User.findByIdAndDelete(req.params.id)
+
+    console.log(`✅ User ${userToDelete.email} deleted by admin`)
     res.json({ message: 'User deleted successfully' })
   } catch (error) {
     res.status(500).json({ error: error.message })
