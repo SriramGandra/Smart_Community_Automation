@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import { showToast } from '../utils/toast'
 import '../styles/Login.css'
@@ -94,7 +94,7 @@ export default function Login() {
         </form>
 
         <p className="login-note">
-          Please enter your credentials to sign in
+          New resident? <Link to="/signup">Create an account</Link>
         </p>
       </div>
     </div>

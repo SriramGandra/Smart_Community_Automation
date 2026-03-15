@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 import bcrypt from 'bcryptjs'
 
-const userSchema = new mongoose.Schema({
+const waitlistSchema = new mongoose.Schema({
   email: {
     type: String,
     required: [true, 'Email is required'],
@@ -11,13 +11,7 @@ const userSchema = new mongoose.Schema({
   },
   password: {
     type: String,
-    required: [true, 'Password is required'],
-    minlength: 6
-  },
-  role: {
-    type: String,
-    required: [true, 'Role is required'],
-    enum: ['Resident', 'Admin', 'Security']
+    required: [true, 'Password is required']
   },
   name: {
     type: String,
@@ -33,16 +27,10 @@ const userSchema = new mongoose.Schema({
 })
 
 // Hash password before saving
-userSchema.pre('save', async function (next) {
+waitlistSchema.pre('save', async function (next) {
   if (!this.isModified('password')) return next()
   this.password = await bcrypt.hash(this.password, 10)
   next()
 })
 
-// Method to compare password
-userSchema.methods.comparePassword = async function (candidatePassword) {
-  return await bcrypt.compare(candidatePassword, this.password)
-}
-
-export default mongoose.model('User', userSchema)
-
+export default mongoose.model('Waitlist', waitlistSchema)

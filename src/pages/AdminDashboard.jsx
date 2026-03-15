@@ -103,6 +103,10 @@ export default function AdminDashboard() {
               <div className="action-icon">📝</div>
               <div className="action-title">Manage Complaints</div>
             </Link>
+            <Link to="/admin/approvals" className="action-card">
+              <div className="action-icon">👥</div>
+              <div className="action-title">User Approvals</div>
+            </Link>
           </div>
         </div>
       </div>

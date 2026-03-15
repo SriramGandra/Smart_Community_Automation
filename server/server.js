@@ -16,6 +16,7 @@ import Complaint from './models/Complaint.js'
 import Payment from './models/Payment.js'
 import Parking from './models/Parking.js'
 import CarCleaning from './models/CarCleaning.js'
+import Waitlist from './models/Waitlist.js'
 
 
 // Load environment variables
@@ -172,9 +173,15 @@ const initializeDefaultData = async () => {
     for (const resident of residents) {
       const existingUser = await User.findOne({ email: resident.email })
       if (!existingUser) {
-        await User.create(resident)
+        await User.create({ ...resident, status: 'Approved' })
         console.log(`✅ Resident user created (${resident.email} / ${resident.password})`)
       } else {
+        // Ensure existing default users are Approved
+        if (existingUser.status !== 'Approved') {
+          existingUser.status = 'Approved'
+          await existingUser.save()
+          console.log(`✅ Status updated to Approved for ${resident.email}`)
+        }
         // Update existing user if name or password changed
         const needsUpdate = existingUser.name !== resident.name
         if (needsUpdate) {
@@ -205,6 +212,112 @@ const initializeDefaultData = async () => {
 }
 
 // Auth Routes
+app.post('/api/auth/signup', async (req, res) => {
+  console.log('POST /api/auth/signup received:', req.body)
+  try {
+    const { email, password, name } = req.body
+
+    if (!email || !password || !name) {
+      return res.status(400).json({ error: 'Name, email and password are required' })
+    }
+
+    // Check if user already exists in main User table
+    const existingUser = await User.findOne({ email: email.toLowerCase().trim() })
+    if (existingUser) {
+      return res.status(400).json({ error: 'Email already registered as an active user' })
+    }
+
+    // Check if user is already on the waitlist
+    const existingWaitlist = await Waitlist.findOne({ email: email.toLowerCase().trim() })
+    if (existingWaitlist) {
+      return res.status(400).json({ error: 'Email is already on the waitlist pending approval' })
+    }
+
+    const waitlistEntry = await Waitlist.create({
+      email: email.toLowerCase().trim(),
+      password, // Password will be hashed by pre-save hook in Waitlist model
+      name,
+      status: 'Pending'
+    })
+
+    console.log(`✅ New signup waitlist request: ${waitlistEntry.email}`)
+    res.status(201).json({ message: 'Signup successful! Please wait for admin approval.' })
+  } catch (error) {
+    console.error('Signup error:', error)
+    res.status(500).json({ error: error.message || 'An error occurred during signup' })
+  }
+})
+
+// User Management Routes (Admin only)
+app.get('/api/users/pending', authenticateToken, async (req, res) => {
+  try {
+    if (req.user.role !== 'Admin') {
+      return res.status(403).json({ error: 'Unauthorized' })
+    }
+    const pendingUsers = await Waitlist.find({ status: 'Pending' }).sort({ createdAt: -1 })
+    res.json({ data: pendingUsers })
+  } catch (error) {
+    res.status(500).json({ error: error.message })
+  }
+})
+
+app.patch('/api/users/:id/status', authenticateToken, async (req, res) => {
+  try {
+    if (req.user.role !== 'Admin') {
+      return res.status(403).json({ error: 'Unauthorized' })
+    }
+    const { status } = req.body
+    if (!['Approved', 'Rejected'].includes(status)) {
+      return res.status(400).json({ error: 'Invalid status' })
+    }
+
+    const waitlistEntry = await Waitlist.findById(req.params.id)
+
+    if (!waitlistEntry) {
+      return res.status(404).json({ error: 'Signup request not found' })
+    }
+
+    waitlistEntry.status = status
+    await waitlistEntry.save()
+
+    if (status === 'Approved') {
+      // Create the actual user
+      // Note: We need to bypass the User model pre-save hook hashing since the password in Waitlist is already hashed.
+      // Easiest is to save it, then manually overwrite the password field if we wanted to avoid double hash.
+      // But actually, the Waitlist model also uses bcrypt.
+      // A cleaner way is to insert directly using the model but bypassing validation, or we update the User schema later.
+      // We will create the user with the HASHED password from the Waitlist.
+      const newUser = new User({
+        name: waitlistEntry.name,
+        email: waitlistEntry.email,
+        password: waitlistEntry.password,
+        role: 'Resident',
+        status: 'Approved' // Keeping this temporarily so we don't break existing login code until we revert the User model
+      })
+      
+      // Tell Mongoose not to hash it again by skipping the pre-save hook check if possible, or using updateOne
+      await User.collection.insertOne({
+        name: waitlistEntry.name,
+        email: waitlistEntry.email,
+        password: waitlistEntry.password,
+        role: 'Resident',
+        status: 'Approved',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      })
+      
+      // Delete from waitlist once successfully migrated
+      await Waitlist.findByIdAndDelete(req.params.id)
+    }
+
+    console.log(`✅ Waitlist entry ${waitlistEntry.email} processed as ${status}`)
+    res.json({ data: waitlistEntry })
+  } catch (error) {
+    console.error('Status update error:', error)
+    res.status(500).json({ error: error.message })
+  }
+})
+
 app.post('/api/auth/login', async (req, res) => {
   try {
     const { email, password, role } = req.body
@@ -226,6 +339,12 @@ app.post('/api/auth/login', async (req, res) => {
     if (!isPasswordValid) {
       console.log(`Login attempt failed: Invalid password for email ${email}`)
       return res.status(401).json({ error: 'Invalid email or password' })
+    }
+
+    // Optional status check if status field is still on User document.
+    // We will keep this for backward compatibility during the switch over to Waitlist
+    if (user.status && user.status === 'Rejected') {
+       return res.status(403).json({ error: 'Your account has been rejected' })
     }
 
     // Check if role matches (for Admin and Security, role must match exactly)

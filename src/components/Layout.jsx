@@ -33,7 +33,8 @@ export default function Layout({ children, title }) {
         { path: '/admin-dashboard', label: 'Dashboard' },
         { path: '/announcements', label: 'Announcements' },
         { path: '/school-updates', label: 'School Updates' },
-        { path: '/complaints', label: 'Complaints' }
+        { path: '/complaints', label: 'Complaints' },
+        { path: '/admin/approvals', label: 'User Approvals' }
       ]
     } else if (user.role === 'Security') {
       return [

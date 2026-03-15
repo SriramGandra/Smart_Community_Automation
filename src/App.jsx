@@ -16,6 +16,8 @@ import Parking from './pages/Parking'
 import CarCleaning from './pages/CarCleaning'
 import MaintenancePayments from './pages/MaintenancePayments'
 import PaymentHistory from './pages/PaymentHistory'
+import Signup from './pages/Signup'
+import UserApproval from './pages/UserApproval'
 
 function ProtectedRoute({ children, allowedRoles }) {
   const { user, loading } = useAuth()
@@ -41,6 +43,7 @@ function AppRoutes() {
   return (
     <Routes>
       <Route path="/login" element={!user ? <Login /> : <Navigate to={`/${user.role}-dashboard`} replace />} />
+      <Route path="/signup" element={!user ? <Signup /> : <Navigate to={`/${user.role}-dashboard`} replace />} />
       
       <Route
         path="/resident-dashboard"
@@ -56,6 +59,15 @@ function AppRoutes() {
         element={
           <ProtectedRoute allowedRoles={['Admin']}>
             <AdminDashboard />
+          </ProtectedRoute>
+        }
+      />
+      
+      <Route
+        path="/admin/approvals"
+        element={
+          <ProtectedRoute allowedRoles={['Admin']}>
+            <UserApproval />
           </ProtectedRoute>
         }
       />

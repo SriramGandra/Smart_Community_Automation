@@ -520,3 +520,20 @@ export const carCleaningService = {
     )
   }
 }
+
+// User Service (Authentication and Management)
+export const userService = {
+  async signup(userData) {
+    return apiClient.post('/auth/signup', userData)
+  },
+
+  async getPendingApprovals() {
+    const response = await apiClient.get('/users/pending')
+    return response.data || response
+  },
+
+  async updateStatus(userId, status) {
+    const response = await apiClient.patch(`/users/${userId}/status`, { status })
+    return response.data || response
+  }
+}
