@@ -90,19 +90,18 @@ const initializeDefaultData = async () => {
     if (!adminUser) {
       await User.create({
         email: 'admin@gmail.com',
-        password: 'Admin123',
+        password: 'Admin@sriram',
         role: 'Admin',
         name: 'Admin User'
       })
       console.log('✅ Admin user created (admin@gmail.com / admin)')
     } else {
-      // Ensure admin user has correct role
-      if (adminUser.role !== 'Admin') {
-        adminUser.role = 'Admin'
-        adminUser.name = 'Admin User'
-        await adminUser.save()
-        console.log('✅ Admin user role updated')
-      }
+      // Ensure admin user has correct role and password
+      adminUser.role = 'Admin'
+      adminUser.name = 'Admin User'
+      adminUser.password = 'Admin@sriram'
+      await adminUser.save()
+      console.log('✅ Admin user role and password updated')
     }
 
     const securityUser = await User.findOne({ email: 'security@gmail.com' })
@@ -139,18 +138,6 @@ const initializeDefaultData = async () => {
         name: 'Shiva'
       },
       {
-        email: 'shrihan@gmail.com',
-        password: 'Shrihan123',
-        role: 'Resident',
-        name: 'Shrihan'
-      },
-      {
-        email: 'meghanath@gmail.com',
-        password: 'Meghanath123',
-        role: 'Resident',
-        name: 'Meghanath'
-      },
-      {
         email: 'manideep@gmail.com',
         password: 'Manideep123',
         role: 'Resident',
@@ -158,7 +145,7 @@ const initializeDefaultData = async () => {
       },
       {
         email: 'admin@gmail.com',
-        password: 'Admin123',
+        password: 'Admin@sriram',
         role: 'Admin',
         name: 'Admin'
       },
@@ -249,6 +236,37 @@ app.post('/api/auth/signup', async (req, res) => {
 })
 
 // User Management Routes (Admin only)
+app.get('/api/users', authenticateToken, async (req, res) => {
+  try {
+    if (req.user.role !== 'Admin') {
+      return res.status(403).json({ error: 'Unauthorized' })
+    }
+    // Fetch all users except passwords
+    const users = await User.find().select('-password').sort({ createdAt: -1 })
+    res.json({ data: users })
+  } catch (error) {
+    res.status(500).json({ error: error.message })
+  }
+})
+
+app.delete('/api/users/:id', authenticateToken, async (req, res) => {
+  try {
+    if (req.user.role !== 'Admin') {
+      return res.status(403).json({ error: 'Unauthorized' })
+    }
+
+    const user = await User.findByIdAndDelete(req.params.id)
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' })
+    }
+
+    console.log(`✅ User ${user.email} deleted by admin`)
+    res.json({ message: 'User deleted successfully' })
+  } catch (error) {
+    res.status(500).json({ error: error.message })
+  }
+})
+
 app.get('/api/users/pending', authenticateToken, async (req, res) => {
   try {
     if (req.user.role !== 'Admin') {
@@ -294,7 +312,7 @@ app.patch('/api/users/:id/status', authenticateToken, async (req, res) => {
         role: 'Resident',
         status: 'Approved' // Keeping this temporarily so we don't break existing login code until we revert the User model
       })
-      
+
       // Tell Mongoose not to hash it again by skipping the pre-save hook check if possible, or using updateOne
       await User.collection.insertOne({
         name: waitlistEntry.name,
@@ -305,7 +323,7 @@ app.patch('/api/users/:id/status', authenticateToken, async (req, res) => {
         createdAt: new Date(),
         updatedAt: new Date()
       })
-      
+
       // Delete from waitlist once successfully migrated
       await Waitlist.findByIdAndDelete(req.params.id)
     }
@@ -328,7 +346,7 @@ app.post('/api/auth/login', async (req, res) => {
 
     // Find user by email (case-insensitive)
     const user = await User.findOne({ email: email.toLowerCase().trim() })
-    
+
     if (!user) {
       console.log(`Login attempt failed: User not found for email ${email}`)
       return res.status(401).json({ error: 'Invalid email or password' })
@@ -344,7 +362,7 @@ app.post('/api/auth/login', async (req, res) => {
     // Optional status check if status field is still on User document.
     // We will keep this for backward compatibility during the switch over to Waitlist
     if (user.status && user.status === 'Rejected') {
-       return res.status(403).json({ error: 'Your account has been rejected' })
+      return res.status(403).json({ error: 'Your account has been rejected' })
     }
 
     // Check if role matches (for Admin and Security, role must match exactly)
@@ -656,10 +674,10 @@ app.post('/api/parking/guest', authenticateToken, async (req, res) => {
         guestBookings: []
       })
     }
-    
+
     parking.guestBookings.push(req.body)
     await parking.save()
-    
+
     const newBooking = parking.guestBookings[parking.guestBookings.length - 1]
     res.json({ data: newBooking })
   } catch (error) {

@@ -527,6 +527,16 @@ export const userService = {
     return apiClient.post('/auth/signup', userData)
   },
 
+  async getAllUsers() {
+    const response = await apiClient.get('/users')
+    return response.data || response
+  },
+
+  async deleteUser(userId) {
+    const response = await apiClient.delete(`/users/${userId}`)
+    return response.data || response
+  },
+
   async getPendingApprovals() {
     const response = await apiClient.get('/users/pending')
     return response.data || response

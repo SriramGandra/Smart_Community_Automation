@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Layout from '../components/Layout'
-import { bookingService, complaintService, announcementService, visitorService } from '../services/dataService'
+import { bookingService, complaintService, announcementService, userService } from '../services/dataService'
 import '../styles/Dashboard.css'
 
 export default function AdminDashboard() {
@@ -17,14 +17,15 @@ export default function AdminDashboard() {
   useEffect(() => {
     const loadStats = async () => {
       try {
-        const [bookings, complaints, announcements] = await Promise.all([
+        const [users, bookings, complaints, announcements] = await Promise.all([
+          userService.getAllUsers(),
           bookingService.getAll(),
           complaintService.getAll(),
           announcementService.getAll()
         ])
 
         setStats({
-          totalUsers: 150, // Mock data
+          totalUsers: users.length,
           totalBookings: bookings.length,
           pendingComplaints: complaints.filter(c => c.status === 'Pending').length,
           totalAnnouncements: announcements.length
@@ -106,6 +107,10 @@ export default function AdminDashboard() {
             <Link to="/admin/approvals" className="action-card">
               <div className="action-icon">👥</div>
               <div className="action-title">User Approvals</div>
+            </Link>
+            <Link to="/admin/users" className="action-card">
+              <div className="action-icon">🧑‍💻</div>
+              <div className="action-title">Manage Users</div>
             </Link>
           </div>
         </div>

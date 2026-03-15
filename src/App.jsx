@@ -18,6 +18,7 @@ import MaintenancePayments from './pages/MaintenancePayments'
 import PaymentHistory from './pages/PaymentHistory'
 import Signup from './pages/Signup'
 import UserApproval from './pages/UserApproval'
+import UserList from './pages/UserList'
 
 function ProtectedRoute({ children, allowedRoles }) {
   const { user, loading } = useAuth()
@@ -68,6 +69,15 @@ function AppRoutes() {
         element={
           <ProtectedRoute allowedRoles={['Admin']}>
             <UserApproval />
+          </ProtectedRoute>
+        }
+      />
+      
+      <Route
+        path="/admin/users"
+        element={
+          <ProtectedRoute allowedRoles={['Admin']}>
+            <UserList />
           </ProtectedRoute>
         }
       />
